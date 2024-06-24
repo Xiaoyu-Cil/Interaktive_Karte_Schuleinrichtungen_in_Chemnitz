@@ -1,0 +1,53 @@
+.favorites-list {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 0.8rem;
+    margin-top: 2rem;
+}
+
+.favorites-list h2 {
+    margin-bottom: 2rem;
+}
+
+.favorite-item {
+    padding: 1.5rem;
+    background-color: #fff;
+    border: 0.1rem solid #ddd;
+    border-radius: 0.4rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+}
+
+.favorite-item h3 {
+    margin: 0;
+    font-size: 1.125rem;
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.favorite-item button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.favorite-item button:hover {
+    background-color: #0056b3;
+}
+
+.facility-details {
+    margin-top: 1rem;
+}
+
+.facility-details p {
+    margin: 0.5rem 0;
+}
+
+.facility-details strong {
+    display: inline-block;
+    width: 7.5rem;
+}
