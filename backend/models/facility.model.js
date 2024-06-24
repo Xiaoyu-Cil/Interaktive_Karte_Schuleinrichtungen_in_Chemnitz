@@ -1,0 +1,46 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const FacilitySchema = new Schema({
+    ART: {type: String, required: false},
+    BARRIEREFREI: {type: Number, required: false},
+    BEZEICHNUNG: {type: String, required: false},
+    BEZEICHNUNGZUSATZ: {type: String, required: false},
+    BEZUGNR: {type: Number, required: false},
+    CreationDate: {type: String, required: false},
+    Creator: {type: String, required: false},
+    EditDate: {type: String, required: false},
+    Editor: {type: String, required: false},
+    EMAIL: {type: String, required: false},
+    FAX: {type: String, required: false},
+    GEBIETSARTNUMMER: {type: Number, required: false},
+    GlobalID: {type: Number, required: false},
+    HAUSBEZ: {type: Number, required: false},
+    HORT: {type: Number, required: false},
+    ID: {type: Number, required: true},
+    INTEGRATIV: {type: Number, required: false},
+    KITA: {type: Number, required: false},
+    KURZBEZEICHNUNG: {type: String, required: false},
+    LEISTUNGEN: {type: String, required: false},
+    NUMMER: {type: Number, required: false},
+    OBJECTID: {type: Number, required: false},
+    ORT: {type: String, required: true},
+    PLZ: {type: Number, required: true},
+    PROFILE: {type: String, required: false},
+    SNUMMER: {type: Number, required: false},
+    SPRACHEN: {type: String, required: false},
+    STANDORTTYP: {type: Number, required: false},
+    STRASSE: {type: String, required: true},
+    STRSCHL: {type: Number, required: false},
+    TELEFON: {type: String, required: true},
+    TRAEGER: {type: String, required: true},
+    TRAEGERTYP: {type: Number, required: false},
+    TYP: {type: Number, required: false},
+    URL: {type: String, required: false},
+    WWW: {type: String, required: false},
+    X: {type: Number, required: true},
+    Y: {type: Number, required: true},
+    KATEGORIE: {type: String, required: true}
+});
+
+module.exports =  mongoose.model("facilityChemnitz", FacilitySchema, "facility");
