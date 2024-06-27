@@ -55,8 +55,8 @@ function App() {
     loadFacilities();
   }, [category, art]);
 
-  const handleCreateProfile = async (username, email, password, adress, PLZ) => {
-    const userData = { username, email, password, adress, PLZ };
+  const handleCreateProfile = async (username, email, password, address, PLZ) => {
+    const userData = { username, email, password, address, PLZ };
     try {
       const usernameExistsResponse = await checkUsernameExists(username);
       if (usernameExistsResponse.exists) {

@@ -107,9 +107,9 @@ exports.update_user = async (req, res) => {
       const user = await User.findOne({ email: email });
   
       if (user) {
-        return res.status(200).send({ exists: true, message: 'E-Mail adress exists! Please use another E-Mail adress' });
+        return res.status(200).send({ exists: true, message: 'E-Mail address exists! Please use another E-Mail adress' });
       } else {
-        return res.status(200).send({ exists: false, message: 'E-Mail adress available' });
+        return res.status(200).send({ exists: false, message: 'E-Mail address available' });
       }
     } catch (error) {
       res.status(500).send({ message: error.message });

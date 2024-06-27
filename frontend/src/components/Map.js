@@ -74,8 +74,8 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
       });
     }
 
-    if (showHome && user && user.adress) {
-      const address = `${user.adress}, ${user.PLZ}, Chemnitz, Sachsen, Germany`;
+    if (showHome && user && user.address) {
+      const address = `${user.address}, ${user.PLZ}, Chemnitz, Sachsen, Germany`;
       geocodeAddress(address, (lat, lon) => {
         L.marker([lat, lon], {
           icon: L.divIcon({
@@ -189,8 +189,8 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
   };
 
   const handleRouteClick = async () => {
-    if (user && user.adress && selectedFacility) {
-      geocodeAddress(`${user.adress}, ${user.PLZ}, Chemnitz, Sachsen, Germany`, async (lat, lng) => {
+    if (user && user.address && selectedFacility) {
+      geocodeAddress(`${user.address}, ${user.PLZ}, Chemnitz, Sachsen, Germany`, async (lat, lng) => {
         const start = `${lng},${lat}`;
         const end = `${selectedFacility.X},${selectedFacility.Y}`;
         try {

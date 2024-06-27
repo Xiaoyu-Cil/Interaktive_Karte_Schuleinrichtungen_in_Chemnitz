@@ -4,12 +4,12 @@ const ProfilePopup = ({ onCreate, onClose }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [adress, setAdress] = useState("");
+  const [address, setAddress] = useState("");
   const [PLZ, setPLZ] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onCreate(username, email, password, adress, PLZ);
+    onCreate(username, email, password, address, PLZ);
   };
 
   return (
@@ -48,8 +48,8 @@ const ProfilePopup = ({ onCreate, onClose }) => {
             <label>Address:</label>
             <input
               type="text"
-              value={adress}
-              onChange={(e) => setAdress(e.target.value)}
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
               required
             />
           </div>

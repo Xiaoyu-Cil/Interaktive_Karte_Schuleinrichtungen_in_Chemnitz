@@ -5,7 +5,7 @@ function ProfileUpdatePopup({ user, onClose, onUpdateProfile, onDeleteUser, toke
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    adress: "",
+    address: "",
     PLZ: "",
     isPoweruser: false
   });
@@ -15,7 +15,7 @@ function ProfileUpdatePopup({ user, onClose, onUpdateProfile, onDeleteUser, toke
       setFormData({
         username: user.username || "",
         email: user.email || "",
-        adress: user.adress || "",
+        address: user.address || "",
         PLZ: user.PLZ || "",
         isPoweruser: user.isPoweruser || false
       });
@@ -75,8 +75,8 @@ function ProfileUpdatePopup({ user, onClose, onUpdateProfile, onDeleteUser, toke
             <label>Address</label>
             <input
               type="text"
-              name="adress"
-              value={formData.adress}
+              name="address"
+              value={formData.address}
               onChange={handleChange}
             />
           </div>
