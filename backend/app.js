@@ -13,7 +13,7 @@ const mongoDbUrl = "mongodb://localhost:27017/project";
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(mongoDbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoDbUrl, {  }) //useNewUrlParser: true, useUnifiedTopology: true
   .then(() => {
     console.log('MongoDB connected ...');
     const db = mongoose.connection.db;
@@ -29,7 +29,7 @@ mongoose.connect(mongoDbUrl, { useNewUrlParser: true, useUnifiedTopology: true }
   })
   .catch(err => console.error('MongoDB connection error:', err));
 
-  const apiKey = '5b3ce3597851110001cf6248a22c76c39d804d7c9e9dd55d9c9b16bf'; // 使用你的OpenRouteService API密钥
+  const apiKey = '5b3ce3597851110001cf6248a22c76c39d804d7c9e9dd55d9c9b16bf';
 
   app.get('/api/geocode', async (req, res) => {
     const { address } = req.query;
