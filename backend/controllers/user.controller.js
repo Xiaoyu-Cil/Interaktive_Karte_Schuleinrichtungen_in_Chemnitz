@@ -23,7 +23,7 @@ exports.get_user = async (req, res) => {
   exports.get_user_data = async (req, res) => {
     try {
       const userId = req.user.id;
-      const user = await User.findById(userId).select('adress favorite PLZ');
+      const user = await User.findById(userId).select('address favorite PLZ');
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
@@ -107,7 +107,7 @@ exports.update_user = async (req, res) => {
       const user = await User.findOne({ email: email });
   
       if (user) {
-        return res.status(200).send({ exists: true, message: 'E-Mail address exists! Please use another E-Mail adress' });
+        return res.status(200).send({ exists: true, message: 'E-Mail address exists! Please use another E-Mail address' });
       } else {
         return res.status(200).send({ exists: false, message: 'E-Mail address available' });
       }
