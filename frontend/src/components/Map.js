@@ -13,13 +13,14 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
   const [routeInfo, setRouteInfo] = useState({ distance: "-", duration: "-" });
   const mapRef = useRef(null);
 
+//set favorite
   useEffect(() => {
-    // Initialize the favorites from user data on component mount
     if (user && typeof user.favorite === "string") {
       setFavorites(user.favorite.split(","));
     }
   }, [user]);
 
+//set map
   useEffect(() => {
     const mapElement = document.getElementById("map");
 
@@ -37,7 +38,7 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
         mapRef.current.removeLayer(layer);
       }
     });
-
+    
     if (facilities && category !== "none") {
       facilities.forEach((facility) => {
         if (facility.Y && facility.X) {
@@ -52,12 +53,12 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
 
           marker.on("click", () => {
             setSelectedFacility(facility);
-            setRouteInfo({ distance: "-", duration: "-" }); // Reset route info
+            setRouteInfo({ distance: "-", duration: "-" });
           });
         }
       });
     }
-
+    //set icon for favorite
     if (showFavorite && favorites.length > 0) {
       favorites.forEach((favoriteId) => {
         const favoriteFacility = allFacilities.find(fac => fac._id === favoriteId);
@@ -65,7 +66,7 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
           L.marker([favoriteFacility.Y, favoriteFacility.X], {
             icon: L.divIcon({
               className: "custom-icon",
-              html: '<div style="color: red;">&#9733;</div>', // Red star icon for favorite facilities
+              html: '<div style="color: orange; font-size: 20px; ">&#9733;</div>',
             }),
           })
             .addTo(mapRef.current)
@@ -73,21 +74,20 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
         }
       });
     }
-
+    //set icon for home address
     if (showHome && user && user.address) {
       const address = `${user.address}, ${user.PLZ}, Chemnitz, Sachsen, Germany`;
       geocodeAddress(address, (lat, lon) => {
         L.marker([lat, lon], {
           icon: L.divIcon({
             className: "custom-icon",
-            html: '<div style="color: blue;">&#9733;</div>', // Blue star icon for user address
+            html: '<div style="color: orange; font-size: 20px; ">&#127968;</div>', 
           }),
         })
           .addTo(mapRef.current)
           .bindPopup("Your Address");
       });
     }
-
   }, [facilities, showHome, showFavorite, favorites, user, allFacilities, category]);
 
   const getColorByCategory = (category) => {
@@ -110,10 +110,11 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
     setRouteInfo({ distance: "-", duration: "-" });
   };
 
-  const handleToggleShowMore = () => {
-    setShowMore(!showMore);
-  };
+  // const handleToggleShowMore = () => {
+  //   setShowMore(!showMore);
+  // };
 
+  //set a new favorite
   const handleToggleFavorite = async () => {
     if (selectedFacility) {
       let updatedFavorites;
@@ -166,6 +167,7 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
     }
   };
 
+  //switch address to geo code （lat, lon）
   const geocodeAddress = async (address, callback) => {
     try {
       const response = await axios.get('http://localhost:3000/api/geocode', {
@@ -177,7 +179,7 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
       console.error('Error fetching geocode:', error);
     }
   };
-
+  //calculate the distance between home and selected facility
   const calculateRoute = async (start, end) => {
     try {
         const response = await axios.post('http://localhost:3000/api/route', { start, end });
@@ -187,11 +189,11 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
         throw error;
     }
   };
-
+  //show route and distance info
   const handleRouteClick = async () => {
     if (user && user.address && selectedFacility) {
-      geocodeAddress(`${user.address}, ${user.PLZ}, Chemnitz, Sachsen, Germany`, async (lat, lng) => {
-        const start = `${lng},${lat}`;
+      geocodeAddress(`${user.address}, ${user.PLZ}, Chemnitz, Sachsen, Germany`, async (lat, lon) => {
+        const start = `${lon},${lat}`;
         const end = `${selectedFacility.X},${selectedFacility.Y}`;
         try {
           const routeData = await calculateRoute(start, end);
@@ -249,8 +251,7 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
               ))}
               </div>
               <div className="popup-footer">
-                <button className="close-btn" onClick={handleClosePopup}>
-                  Close
+                <button className="close-btn"onClick={handleClosePopup}>
                 </button>
                 <div
                   className="heart-icon"

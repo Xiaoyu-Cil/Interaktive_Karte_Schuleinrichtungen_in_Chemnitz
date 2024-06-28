@@ -25,7 +25,7 @@
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 90%;
-  max-width: 700px; /* Adjusted width */
+  max-width: 800px;
   max-height: 80vh;
   overflow-y: auto;
   margin: auto;
@@ -47,7 +47,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   width: 90%;
-  max-width: 700px; /* Adjusted width */
+  max-width: 700px;
 }
 
 .contact-icons {
@@ -66,6 +66,13 @@
   color: #007bff;
 }
 
+.mail-button:hover,
+.phone-button:hover,
+.route-btn:hover {
+  color: #fafafa;
+  text-decoration: underline;
+}
+
 .facility-details {
   margin-top: 10px;
   text-align: left;
@@ -77,19 +84,21 @@
   flex-wrap: wrap;
   word-break: break-word;
   white-space: pre-wrap;
-  margin-bottom: 8px; /* Add space between lines */
+  margin-bottom: 8px;
 }
 
 .facility-details p strong {
-  margin-right: 20px; /* Adjust spacing as needed */
+  margin-right: 20px;
 }
 
 .heart-icon {
   cursor: pointer;
-  font-size: 24px;
+  font-size: 20px;
   display: inline-block;
   vertical-align: middle;
   margin-left: 10px;
+  position: relative;
+  left: 50%;
 }
 
 .heart-empty::before {
@@ -104,8 +113,10 @@
 
 .heart-tooltip {
   position: absolute;
-  top: 35px; /* Position below the heart icon */
-  left: 5px;
+  bottom: 35px; /* Position below the heart icon */
+  left: 50%;
+  font-size: small;
+  transform: translateX(-50%);
   background-color: #ffffff;
   color: #333333;
   padding: 5px;
@@ -128,11 +139,19 @@
 
 .close-btn {
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px; /* Increase font size for better visibility */
   background: none;
   border: none;
-  color: #007bff;
-  text-decoration: underline;
+  color: #4f4d4d !important;
+}
+
+.close-btn hover {
+  color: #ffffff !important;
+}
+
+.close-btn::before {
+  content: 'x'; /* Display 'x' symbol */
+  font-weight: bold;
 }
 
 .route-info {
