@@ -184,7 +184,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <button onClick={toggleMenu} className="button">
-          {menuVisible ? 'Hide Menu' : 'Show Menu'}
+          {/* {menuVisible ? 'Hide Menu' : 'Show Menu'} */}
         </button>
         {menuVisible && (
           <div className="menu">

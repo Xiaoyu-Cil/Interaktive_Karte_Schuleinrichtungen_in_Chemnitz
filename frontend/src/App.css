@@ -59,14 +59,14 @@ button {
   margin-top: 1rem;
   padding: 1rem 2rem;
   border: none;
-  background-color: #007bff;
+  background-color: #c1c2c4;
   color: white;
   border-radius: 0.5rem;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #3181f9;
 }
 
 button[type="button"] {
