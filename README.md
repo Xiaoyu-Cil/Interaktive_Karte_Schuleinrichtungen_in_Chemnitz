@@ -57,8 +57,10 @@ The project has the following frontend dependencies:
 ### Backend
 The project has several backend dependencies, including but not limited to:
 	•	express - Web framework for Node.js
+	•	apollo-server-express - Apollo Server integration for Express
 	•	axios - Promise based HTTP client for the browser and Node.js
 	•	bcryptjs - Library to hash passwords
+	•	body-parser - Node.js body parsing middleware
 	•	cors - Node.js CORS middleware
 	•	graphql - A query language for your API
 	•	jsonwebtoken - JSON Web Token implementation
