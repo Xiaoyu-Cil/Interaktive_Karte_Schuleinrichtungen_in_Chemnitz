@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Map from "./components/Map";
-import FavoritesList from "./components/FavoritesList";
 import ProfilePopup from "./components/ProfilePopup";
 import LoginPopup from "./components/LoginPopup";
 import ProfileOverviewPopup from "./components/ProfileOverviewPopup";
@@ -20,13 +19,12 @@ function App() {
   const [art, setArt] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
-  const [selectedFacilityId, setSelectedFacilityId] = useState(null);
   const [view, setView] = useState("map"); // 'map' oder 'favorites'
   const [favorites, setFavorites] = useState([]);
   const [token, setToken] = useState("");
   const [showHome, setShowHome] = useState(false);
   const [showFavorite, setShowFavorite] = useState(false);
-  const [menuVisible, setMenuVisible] = useState(true);
+
 
   useEffect(() => {
     const loadFacilities = async () => {
@@ -144,14 +142,6 @@ function App() {
     handleLogout();
   };
 
-  const handleFacilityClick = (facilityId) => {
-    setSelectedFacilityId(facilityId);
-  };
-
-  const handleViewChange = (newView) => {
-    setView(newView);
-  };
-
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
   };
@@ -176,17 +166,10 @@ function App() {
     }
   };
 
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
-
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={toggleMenu} className="button">
-          {/* {menuVisible ? 'Hide Menu' : 'Show Menu'} */}
-        </button>
-        {menuVisible && (
+        {(
           <div className="menu">
             {loggedIn ? (
               <>
@@ -249,7 +232,7 @@ function App() {
             showHome={showHome}
             showFavorite={showFavorite}
             category={category}
-            token={token} // Pass token to Map component
+            token={token}
           />
         )}
         {view === "favorites" && (
@@ -280,7 +263,7 @@ function App() {
           onClose={() => setIsProfileUpdatePopupOpen(false)}
           onUpdateProfile={handleUpdateProfile}
           onDeleteUser={handleDeleteUser}
-          token={token} // Pass token to ProfileUpdatePopup component
+          token={token}
         />
       )}
     </div>

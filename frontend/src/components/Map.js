@@ -123,7 +123,7 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
       } else {
         if (!user.isPoweruser && favorites.length > 0) {
           const confirmUpdate = window.confirm(
-            "Sind Sie sicher, dass Sie den Favoriten ändern möchten?"
+            "Das Hinzufügen eines neuen Favoriten überschreibt den bestehenden Favoriten. Möchten Sie fortfahren?"
           );
           if (!confirmUpdate) {
             return;
