@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import "./Map.css"; // Styling for the heart icon
-import { updateUser } from "../api/user.api"; // Ensure to import updateUser method
+import "./map.css";
+import { updateUser } from "../api/user.api";
 import axios from "axios";
 
 function Map({ facilities, allFacilities, updateFavorites, user, showHome, showFavorite, category, token }) {
@@ -109,10 +109,6 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
     setSelectedFacility(null);
     setRouteInfo({ distance: "-", duration: "-" });
   };
-
-  // const handleToggleShowMore = () => {
-  //   setShowMore(!showMore);
-  // };
 
   //set a new favorite
   const handleToggleFavorite = async () => {

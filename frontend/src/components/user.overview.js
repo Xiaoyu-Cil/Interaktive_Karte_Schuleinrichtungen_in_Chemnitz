@@ -1,11 +1,7 @@
 import React from 'react';
-import ProfileUpdatePopup from "./ProfileUpdatePopup"
+import ProfileUpdatePopup from "./user.update"
 
 const ProfileOverviewPopup = ({ user, onClose }) => {
-  const [ showUpdate, setUpdate ] = useState(false);
-  const handleUpdateClick = () => { setUpdate(true); };
-  const handleCloseUpdate = () => { setSho}
-
   return (
     <div className="popup">
       <div className="popup-inner">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ProfilePopup = ({ onCreate, onClose }) => {
+const Register = ({ onCreate, onClose }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -70,4 +70,4 @@ const ProfilePopup = ({ onCreate, onClose }) => {
   );
 };
 
-export default ProfilePopup;
+export default Register;
