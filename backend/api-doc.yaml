@@ -1,0 +1,273 @@
+openapi: 3.0.0
+info:
+  title: Einrichtungen Chemnitz API
+  description: API Dokumentation für die Chemnitz Anwendung.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                address:
+                  type: string
+                ORT:
+                  type: string
+                  default: Chemnitz
+                PLZ:
+                  type: string
+                isPoweruser:
+                  type: boolean
+                  default: false
+                deleted:
+                  type: boolean
+                  default: false
+      responses:
+        '201':
+          description: User registered successfully
+        '500':
+          description: Error registering user
+
+  /auth/login:
+    post:
+      summary: User login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login successful
+        '400':
+          description: Invalid credentials
+        '403':
+          description: User account is deleted
+        '500':
+          description: Error logging in
+
+  /auth/protected:
+    get:
+      summary: Protected route
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Access granted to protected route
+        '401':
+          description: No token, authorization denied
+
+  /facilities/all:
+    get:
+      summary: Get all facilities
+      responses:
+        '200':
+          description: A list of facilities
+        '500':
+          description: Error retrieving facilities
+
+  /facilities/category/{category}:
+    get:
+      summary: Get facilities by category
+      parameters:
+        - name: category
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Facilities found
+        '500':
+          description: Error retrieving facilities
+
+  /facilities/{id}:
+    get:
+      summary: Get facility by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Facility found
+        '404':
+          description: Facility not found
+        '500':
+          description: Error retrieving facility
+
+  /facilities/art/{artType}:
+    get:
+      summary: Get facilities by art type
+      parameters:
+        - name: artType
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Facilities found
+        '500':
+          description: Error retrieving facilities
+
+  /users/deleted:
+    get:
+      summary: Get all deleted users
+      responses:
+        '200':
+          description: A list of deleted users
+        '500':
+          description: Error retrieving users
+
+  /users/name/{name}:
+    get:
+      summary: Get user by name
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User found
+        '500':
+          description: Error retrieving user
+
+  /users/data:
+    get:
+      summary: Get user data
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: User data retrieved
+        '404':
+          description: User not found
+        '500':
+          description: Server error
+
+  /users/delete/{username}:
+    patch:
+      summary: Soft delete a user by username
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User deleted successfully
+        '404':
+          description: User not found
+        '500':
+          description: Error deleting user
+
+  /users/update/{username}:
+    patch:
+      summary: Update a user by username
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                address:
+                  type: string
+                favorite:
+                  type: string
+      responses:
+        '200':
+          description: User updated successfully
+        '404':
+          description: User not found
+        '500':
+          description: Error updating user
+
+  /users/check_username/{username}:
+    get:
+      summary: Check if username exists
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Username checked successfully
+        '500':
+          description: Error checking username
+
+  /users/check_email/{email}:
+    get:
+      summary: Check if email exists
+      parameters:
+        - name: email
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Email checked successfully
+        '500':
+          description: Error checking email
+
+  /users/favorites/{username}:
+    get:
+      summary: Get user favorites
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User favorites retrieved
+        '404':
+          description: User not found
+        '500':
+          description: Server error
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

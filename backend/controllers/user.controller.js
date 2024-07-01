@@ -71,6 +71,21 @@ exports.update_user = async (req, res) => {
   }
 };
 
+exports.update_user = async (req, res) => {
+  try {
+    const name = req.params.username;
+    const updateData = req.body;
+    const user = await User.findOne({ username: name });
+    if (!user) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+    const updatedUser = await User.findByIdAndUpdate(user._id, updateData, { new: true });
+    res.status(200).send(updatedUser);
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+};
+
   exports.check_username_exists = async (req, res) => {
     try {
       const name = req.params.username;
@@ -81,21 +96,6 @@ exports.update_user = async (req, res) => {
       } else {
         return res.status(200).send({ exists: false, message: 'Username available' });
       }
-    } catch (error) {
-      res.status(500).send({ message: error.message });
-    }
-  };
-
-  exports.update_user = async (req, res) => {
-    try {
-      const name = req.params.username;
-      const updateData = req.body;
-      const user = await User.findOne({ username: name });
-      if (!user) {
-        return res.status(404).send({ message: 'User not found' });
-      }
-      const updatedUser = await User.findByIdAndUpdate(user._id, updateData, { new: true });
-      res.status(200).send(updatedUser);
     } catch (error) {
       res.status(500).send({ message: error.message });
     }

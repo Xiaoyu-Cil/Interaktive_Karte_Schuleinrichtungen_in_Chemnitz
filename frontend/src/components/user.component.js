@@ -5,7 +5,7 @@ export const createProfile = async (username, email, password, address, PLZ, set
   try {
     const usernameExistsResponse = await checkUsernameExists(username);
     if (usernameExistsResponse.exists) {
-      alert("Username already exists. Please choose another username.");
+      alert("Dieser Name existiert schon. Bitte einen anderen Name benutzen!");
       return;
     }
 
@@ -16,7 +16,7 @@ export const createProfile = async (username, email, password, address, PLZ, set
     }
 
     await registerUser(userData);
-    alert("User created successfully!");
+    alert("Konto erfolgreich erstellt!");
     setIsProfilePopupOpen(false);
   } catch (error) {
     console.error("Error creating user:", error);
@@ -63,7 +63,7 @@ export const updateProfile = async (user, updatedData, token, setUser, setIsProf
   try {
     await updateUser(user.username, updatedData, token);
     setUser({ ...user, ...updatedData });
-    alert("Profile updated successfully!");
+    alert("Profil aktualisiert!");
     setIsProfileUpdatePopupOpen(false);
   } catch (error) {
     alert("Error updating profile.");

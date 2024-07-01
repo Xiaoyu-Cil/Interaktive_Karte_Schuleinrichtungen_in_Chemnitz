@@ -24,7 +24,8 @@
     "react-leaflet-markercluster": "^3.0.0-rc1",
     "react-router-dom": "^6.24.0",
     "react-scripts": "^5.0.1",
-    "src": "^1.1.2"
+    "src": "^1.1.2",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",

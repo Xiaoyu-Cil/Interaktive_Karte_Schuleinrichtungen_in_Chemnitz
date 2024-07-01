@@ -77,6 +77,13 @@ The project has the following frontend development dependencies:
 	•	loader-utils - 3.2.1
 	•	typescript - 4.4.4
 
+
+## API Documentation
+The api documentation for this project can be visited on port 3002 with: 
+	•	cd backend
+	•	node api.document.js
+
+
 ## Browserslist
 The project supports the following browsers:
 	•	“>0.2%”

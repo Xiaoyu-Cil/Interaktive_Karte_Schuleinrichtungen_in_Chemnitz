@@ -38,7 +38,7 @@ function Update({ user, onClose, onUpdateProfile, onDeleteUser, token }) {
   const handleDeleteUser = async () => {
     try {
       await softDeleteUser(user.username, token);
-      alert("User deleted successfully!");
+      alert("Nutzerkonto erfolgreich gelöscht!");
       onDeleteUser();
     } catch (error) {
       alert("Error deleting user.");
