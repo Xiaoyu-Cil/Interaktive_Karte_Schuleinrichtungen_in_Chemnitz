@@ -51,7 +51,7 @@ export const handleLogin = async (username, password, setToken, setUser, setLogg
   }
 };
 
-export const handleLogout = () => {
+export const handleLogout = (setLoggedIn, setUser, setToken, setFavorites, setShowFavorite) => {
   setLoggedIn(false);
   setUser(null);
   setToken("");
@@ -70,6 +70,6 @@ export const updateProfile = async (user, updatedData, token, setUser, setIsProf
   }
 };
 
-export const deleteUser = async (handleLogout) => {
+export const deleteUser = async () => {
   handleLogout();
 };
