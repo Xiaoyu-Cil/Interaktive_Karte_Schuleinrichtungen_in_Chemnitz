@@ -137,8 +137,8 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
 
   const updateFavoriteList = async (newFavorites) => {
     try {
-      console.log("Updating favorite list for user:", user.username);
-      console.log("New favorites:", newFavorites);
+      // console.log("Updating favorite list for user:", user.username);
+      // console.log("New favorites:", newFavorites);
       await updateUser(user.username, {
         favorite: newFavorites,
       });
@@ -193,7 +193,7 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
         const end = `${selectedFacility.X},${selectedFacility.Y}`;
         try {
           const routeData = await calculateRoute(start, end);
-          console.log('Route data:', routeData);
+          // console.log('Route data:', routeData);
           if (routeData && routeData.features && routeData.features.length > 0) {
             const { distance, duration } = routeData.features[0].properties.summary;
             const distanceKm = (distance / 1000).toFixed(2);
@@ -211,9 +211,9 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
   };
 
   // Use useEffect to log routeInfo changes
-  useEffect(() => {
-    console.log('Route Info updated:', routeInfo);
-  }, [routeInfo]);
+  // useEffect(() => {
+  //   console.log('Route Info updated:', routeInfo);
+  // }, [routeInfo]);
 
   return (
     <div>
@@ -222,7 +222,7 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
         <div className="facility-popup">
           <div className="popup-content">
             <h3>{selectedFacility.BEZEICHNUNG}</h3>
-            <button className="route-btn" onClick={handleRouteClick}>
+            <button className="route-btn" type="route" onClick={handleRouteClick}>
               Route anzeigen
             </button>
             <div className="contact-icons">
@@ -247,7 +247,7 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
               ))}
               </div>
               <div className="popup-footer">
-                <button className="close-btn"onClick={handleClosePopup}>
+                <button type="close" className="close-btn"onClick={handleClosePopup}>
                 </button>
                 <div
                   className="heart-icon"

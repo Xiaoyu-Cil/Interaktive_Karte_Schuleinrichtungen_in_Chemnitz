@@ -1,6 +1,6 @@
 import { checkUsernameExists, checkEmailExists, registerUser, loginUser, updateUser, fetchUserFavorites, softDeleteUser } from "../api/user.api";
 
-export const handleCreateProfile = async (username, email, password, address, PLZ, setIsProfilePopupOpen) => {
+export const createProfile = async (username, email, password, address, PLZ, setIsProfilePopupOpen) => {
   const userData = { username, email, password, address, PLZ };
   try {
     const usernameExistsResponse = await checkUsernameExists(username);
@@ -38,7 +38,9 @@ export const handleLogin = async (username, password, setToken, setUser, setLogg
     localStorage.setItem('user', JSON.stringify(user));
 
     const userFavorites = await fetchUserFavorites(user.username);
-    setFavorites(userFavorites.split(','));
+    if (userFavorites) {
+      setFavorites(userFavorites.split(','));
+    }
   } catch (error) {
     if (error.response && error.response.status === 403) {
       alert("User account is deleted. Please contact support.");
@@ -57,7 +59,7 @@ export const handleLogout = () => {
   setShowFavorite(false);
 };
 
-export const handleUpdateProfile = async (user, updatedData, token, setUser, setIsProfileUpdatePopupOpen) => {
+export const updateProfile = async (user, updatedData, token, setUser, setIsProfileUpdatePopupOpen) => {
   try {
     await updateUser(user.username, updatedData, token);
     setUser({ ...user, ...updatedData });
@@ -68,6 +70,6 @@ export const handleUpdateProfile = async (user, updatedData, token, setUser, set
   }
 };
 
-export const handleDeleteUser = async (handleLogout) => {
+export const deleteUser = async (handleLogout) => {
   handleLogout();
 };

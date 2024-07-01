@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { softDeleteUser } from "../api/user.api";
 
-function ProfileUpdatePopup({ user, onClose, onUpdateProfile, onDeleteUser, token }) {
+function Update({ user, onClose, onUpdateProfile, onDeleteUser, token }) {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -59,6 +59,7 @@ function ProfileUpdatePopup({ user, onClose, onUpdateProfile, onDeleteUser, toke
               value={formData.username}
               onChange={handleChange}
               required
+              readOnly
             />
           </div>
           <div className="form-group">
@@ -69,6 +70,7 @@ function ProfileUpdatePopup({ user, onClose, onUpdateProfile, onDeleteUser, toke
               value={formData.email}
               onChange={handleChange}
               required
+              readOnly
             />
           </div>
           <div className="form-group">
@@ -96,19 +98,20 @@ function ProfileUpdatePopup({ user, onClose, onUpdateProfile, onDeleteUser, toke
                 name="isPoweruser"
                 checked={formData.isPoweruser}
                 onChange={handleChange}
+                style={{ marginRight: "4px" }}
               />
               Power User
-            </label>
+              </label>
           </div>
           <div className="button-group">
             <button type="submit">Update</button>
-            <button type="button" onClick={handleDeleteUser} className="delete-btn">Delete</button>
+            <button type="delete" onClick={handleDeleteUser} className="delete-btn">Delete</button>
           </div>
         </form>
-        <button type="button" onClick={onClose} className="close-btn">Close</button>
+        <button type="close" onClick={onClose} className="close">x</button>
       </div>
     </div>
   );
 }
 
-export default ProfileUpdatePopup;
+export default Update;

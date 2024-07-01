@@ -1,7 +1,4 @@
-import React from 'react';
-import ProfileUpdatePopup from "./user.update"
-
-const ProfileOverviewPopup = ({ user, onClose }) => {
+const ProfileOverviewPopup = ({ user, onClose, onOpenUpdate }) => {
   return (
     <div className="popup">
       <div className="popup-inner">
@@ -11,8 +8,8 @@ const ProfileOverviewPopup = ({ user, onClose }) => {
         {user.address && <p><strong>Address:</strong> {user.address}</p>}
         {user.favorite && <p><strong>Favorite:</strong> {user.favorite}</p>}
         <p><strong>Is Poweruser:</strong> {user.isPoweruser ? 'Yes' : 'No'}</p>
-        <button onClick={ProfileUpdatePopup}>Update</button>
-        <button onClick={onClose}>Close</button>
+        <button onClick={onOpenUpdate}>Update</button>
+        <button type="close" onClick={onClose} className="close">x</button>
       </div>
     </div>
   );

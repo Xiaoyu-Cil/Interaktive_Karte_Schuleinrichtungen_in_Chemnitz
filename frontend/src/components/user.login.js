@@ -34,7 +34,7 @@ function LoginPopup({ onClose, onLogin }) {
           </div>
           <button type="submit">Login</button>
         </form>
-        <button type="button" onClick={onClose} className="close-btn">Close</button>
+        <button type="close" onClick={onClose} className="close">x</button>
       </div>
     </div>
   );

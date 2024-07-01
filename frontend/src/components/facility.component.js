@@ -8,6 +8,7 @@ export const useFacilities = () => {
   const [art, setArt] = useState("");
   const [showHome, setShowHome] = useState(false);
   const [showFavorite, setShowFavorite] = useState(false);
+  const [home, setHome] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
@@ -46,6 +47,7 @@ export const useFacilities = () => {
     setArt,
     showHome,
     setShowHome,
+    home,
     showFavorite,
     setShowFavorite,
     favorites,
@@ -61,13 +63,13 @@ export const handleArtChange = (setArt) => (e) => {
   setArt(e.target.value);
 };
 
-export const handleHomeCheckboxChange = (setShowHome) => (e) => {
+export const handleHomeChange = (setShowHome) => (e) => {
   setShowHome(e.target.checked);
 };
 
-export const handleFavoriteCheckboxChange = (setShowFavorite, favorites) => (e) => {
+export const handleFavoriteChange = (setShowFavorite, favorites) => (e) => {
   if (e.target.checked && favorites.length === 0) {
-    alert("Please add favorites first.");
+    alert("Bitte fügen Sie zuerst Favoriten hinzu.");
   } else {
     setShowFavorite(e.target.checked);
   }

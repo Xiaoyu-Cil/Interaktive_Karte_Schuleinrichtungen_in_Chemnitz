@@ -63,7 +63,7 @@ const Register = ({ onCreate, onClose }) => {
             />
           </div>
           <button type="submit">Create</button>
-          <button type="button" onClick={onClose}>Close</button>
+          <button type="close" onClick={onClose}>x</button>
         </form>
       </div>
     </div>

@@ -3,16 +3,16 @@ import "./App.css";
 import Map from "./components/map";
 import Register from "./components/user.register";
 import LoginPopup from "./components/user.login";
-import ProfileOverviewPopup from "./components/user.overview";
-import ProfileUpdatePopup from "./components/user.update";
-import { handleCreateProfile, handleLogin, handleLogout, handleUpdateProfile, handleDeleteUser } from "./components/user.component";
-import { useFacilities, handleCategoryChange, handleArtChange, handleHomeCheckboxChange, handleFavoriteCheckboxChange } from "./components/facility.component";
+import ProfileOverview from "./components/user.overview";
+import Update from "./components/user.update";
+import { createProfile, handleLogin, handleLogout, updateProfile, deleteUser } from "./components/user.component";
+import { useFacilities, handleCategoryChange, handleArtChange, handleHomeChange, handleFavoriteChange } from "./components/facility.component";
 
 function App() {
-  const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
-  const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
-  const [isProfileOverviewPopupOpen, setIsProfileOverviewPopupOpen] = useState(false);
-  const [isProfileUpdatePopupOpen, setIsProfileUpdatePopupOpen] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [showUpdateProfile, setShowUpdateProfile] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState("");
@@ -32,20 +32,24 @@ function App() {
     setFavorites
   } = useFacilities();
 
+  const openUpdateProfile = () => {
+    setShowProfile(false);
+    setShowUpdateProfile(true);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <div className="menu">
           {loggedIn ? (
             <>
-              <button onClick={() => setIsProfileOverviewPopupOpen(true)}>Profile Overview</button>
-              <button onClick={() => setIsProfileUpdatePopupOpen(true)}>Update Profile</button>
-              <button onClick={handleLogout}>Logout</button>
+              <button onClick={() => setShowProfile(true)}>Profile</button>
+              <button onClick={() => handleLogout(setLoggedIn, setUser, setToken, setFavorites, setShowFavorite)}>Logout</button>
             </>
           ) : (
             <>
-              <button onClick={() => setIsProfilePopupOpen(true)}>Register</button>
-              <button onClick={() => setIsLoginPopupOpen(true)}>Login</button>
+              <button onClick={() => setShowRegister(true)}>Register</button>
+              <button onClick={() => setShowLogin(true)}>Login</button>
             </>
           )}
           <div className="filter-section">
@@ -76,11 +80,11 @@ function App() {
           </div>
           <div className="checkbox">
             <label>
-              <input type="checkbox" checked={showHome} onChange={handleHomeCheckboxChange(setShowHome)} />
+              <input type="checkbox" checked={showHome} onChange={handleHomeChange(setShowHome)} />
               Home
             </label>
             <label>
-              <input type="checkbox" checked={showFavorite} onChange={handleFavoriteCheckboxChange(setShowFavorite, favorites)} />
+              <input type="checkbox" checked={showFavorite} onChange={handleFavoriteChange(setShowFavorite, favorites)} />
               Favorite
             </label>
           </div>
@@ -98,30 +102,31 @@ function App() {
           token={token}
         />
       </main>
-      {isProfilePopupOpen && (
+      {showRegister && (
         <Register
-          onClose={() => setIsProfilePopupOpen(false)}
-          onCreate={(username, email, password, address, PLZ) => handleCreateProfile(username, email, password, address, PLZ, setIsProfilePopupOpen)}
+          onClose={() => setShowRegister(false)}
+          onCreate={(username, email, password, address, PLZ) => createProfile(username, email, password, address, PLZ, setShowRegister)}
         />
       )}
-      {isLoginPopupOpen && (
+      {showLogin && (
         <LoginPopup
-          onClose={() => setIsLoginPopupOpen(false)}
-          onLogin={(username, password) => handleLogin(username, password, setToken, setUser, setLoggedIn, setIsLoginPopupOpen, setFavorites)}
+          onClose={() => setShowLogin(false)}
+          onLogin={(username, password) => handleLogin(username, password, setToken, setUser, setLoggedIn, setShowLogin, setFavorites)}
         />
       )}
-      {isProfileOverviewPopupOpen && (
-        <ProfileOverviewPopup
+      {showProfile && (
+        <ProfileOverview
           user={user}
-          onClose={() => setIsProfileOverviewPopupOpen(false)}
+          onOpenUpdate={openUpdateProfile}
+          onClose={() => setShowProfile(false)}
         />
       )}
-      {isProfileUpdatePopupOpen && (
-        <ProfileUpdatePopup
+      {showUpdateProfile && (
+        <Update
           user={user}
-          onClose={() => setIsProfileUpdatePopupOpen(false)}
-          onUpdateProfile={(updatedData) => handleUpdateProfile(user, updatedData, token, setUser, setIsProfileUpdatePopupOpen)}
-          onDeleteUser={() => handleDeleteUser(handleLogout)}
+          onClose={() => setShowUpdateProfile(false)}
+          onUpdateProfile={(updatedData) => updateProfile(user, updatedData, token, setUser, setShowUpdateProfile)}
+          onDeleteUser={() => deleteUser(handleLogout)}
           token={token}
         />
       )}
