@@ -17,7 +17,7 @@ To install the necessary dependencies for both frontend and backend, run the fol
 ## Usage
 
 ### Starting the Project
-To start the frontend project, use the following command: npm start
+To start the project, use the following command: npm start
 To start the frontend project in development mode with nodemon, use: npm run dev
 To start the backend project, use the following command: npm start
 
@@ -38,7 +38,7 @@ If you need to eject the frontend project (this is a one-way operation), use: np
 	•	npm run eject - Ejects the app from Create React App setup.
 
 ### Backend
-	•	npm start - Starts the backend server.
+	•	npm start - Starts the backend server on port 3000.
 
 
 ## Dependencies
@@ -60,7 +60,6 @@ The project has several backend dependencies, including but not limited to:
 	•	axios - Promise based HTTP client for the browser and Node.js
 	•	bcryptjs - Library to hash passwords
 	•	cors - Node.js CORS middleware
-	•	graphql - A query language for your API
 	•	jsonwebtoken - JSON Web Token implementation
 	•	mongoose - MongoDB object modeling tool
 	•	nodemon - Tool that helps develop Node.js based applications by automatically restarting the node application when file changes in the directory are detected
