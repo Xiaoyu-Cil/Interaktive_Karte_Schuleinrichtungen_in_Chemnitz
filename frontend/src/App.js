@@ -48,7 +48,7 @@ function App() {
             </>
           ) : (
             <>
-              <button onClick={() => setShowRegister(true)}>Register</button>
+              <button onClick={() => setShowRegister(true)}>Registrieren</button>
               <button onClick={() => setShowLogin(true)}>Login</button>
             </>
           )}
@@ -81,11 +81,11 @@ function App() {
           <div className="checkbox">
             <label>
               <input type="checkbox" checked={showHome} onChange={handleHomeChange(setShowHome)} />
-              Home
+              Heimatadresse
             </label>
             <label>
               <input type="checkbox" checked={showFavorite} onChange={handleFavoriteChange(setShowFavorite, favorites)} />
-              Favorite
+              Favoriten
             </label>
           </div>
         </div>

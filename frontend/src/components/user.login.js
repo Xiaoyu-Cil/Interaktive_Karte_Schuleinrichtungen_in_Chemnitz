@@ -15,7 +15,7 @@ function LoginPopup({ onClose, onLogin }) {
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Username</label>
+            <label>Name:</label>
             <input
               type="text"
               value={username}
@@ -24,7 +24,7 @@ function LoginPopup({ onClose, onLogin }) {
             />
           </div>
           <div className="form-group">
-            <label>Password</label>
+            <label>Passwort:</label>
             <input
               type="password"
               value={password}

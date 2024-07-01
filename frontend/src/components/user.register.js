@@ -18,7 +18,7 @@ const Register = ({ onCreate, onClose }) => {
         <h2>Create Profile</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Username:</label>
+            <label>Name:</label>
             <input
               type="text"
               value={username}
@@ -36,7 +36,7 @@ const Register = ({ onCreate, onClose }) => {
             />
           </div>
           <div className="form-group">
-            <label>Password:</label>
+            <label>Passwort:</label>
             <input
               type="password"
               value={password}
@@ -45,7 +45,7 @@ const Register = ({ onCreate, onClose }) => {
             />
           </div>
           <div className="form-group">
-            <label>Address:</label>
+            <label>Addresse:</label>
             <input
               type="text"
               value={address}
@@ -62,7 +62,7 @@ const Register = ({ onCreate, onClose }) => {
               required
             />
           </div>
-          <button type="submit">Create</button>
+          <button type="submit">Erstellen</button>
           <button type="close" onClick={onClose}>x</button>
         </form>
       </div>

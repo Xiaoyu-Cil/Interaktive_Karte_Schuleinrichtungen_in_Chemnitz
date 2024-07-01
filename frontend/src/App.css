@@ -37,10 +37,11 @@ button {
   width: 140px;
   height: 50px;
   margin-top: 1rem;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   border: none;
   background-color: #c1c2c4c6;
   color: white;
+  font-size: medium;
   border-radius: 0.5rem;
   cursor: pointer;
 }
@@ -153,6 +154,10 @@ button[type="route"]:hover {
   margin: 5px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+input[type="checkbox"] {
+  left:50%;
 }
 
 .filter-section {

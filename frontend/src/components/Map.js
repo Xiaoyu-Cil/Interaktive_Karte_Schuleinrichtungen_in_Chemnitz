@@ -210,11 +210,6 @@ function Map({ facilities, allFacilities, updateFavorites, user, showHome, showF
     }
   };
 
-  // Use useEffect to log routeInfo changes
-  // useEffect(() => {
-  //   console.log('Route Info updated:', routeInfo);
-  // }, [routeInfo]);
-
   return (
     <div>
       <div id="map" className="Map"></div>

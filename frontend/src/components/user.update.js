@@ -52,7 +52,7 @@ function Update({ user, onClose, onUpdateProfile, onDeleteUser, token }) {
         <h2>Update Profile</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Username</label>
+            <label>Name:</label>
             <input
               type="text"
               name="username"
@@ -63,7 +63,7 @@ function Update({ user, onClose, onUpdateProfile, onDeleteUser, token }) {
             />
           </div>
           <div className="form-group">
-            <label>Email</label>
+            <label>Email:</label>
             <input
               type="email"
               name="email"
@@ -74,7 +74,7 @@ function Update({ user, onClose, onUpdateProfile, onDeleteUser, token }) {
             />
           </div>
           <div className="form-group">
-            <label>Address</label>
+            <label>Addresse:</label>
             <input
               type="text"
               name="address"
@@ -83,7 +83,7 @@ function Update({ user, onClose, onUpdateProfile, onDeleteUser, token }) {
             />
           </div>
           <div className="form-group">
-            <label>PLZ</label>
+            <label>PLZ:</label>
             <input
               type="text"
               name="PLZ"
@@ -98,14 +98,13 @@ function Update({ user, onClose, onUpdateProfile, onDeleteUser, token }) {
                 name="isPoweruser"
                 checked={formData.isPoweruser}
                 onChange={handleChange}
-                style={{ marginRight: "4px" }}
               />
-              Power User
+              Power-User
               </label>
           </div>
           <div className="button-group">
-            <button type="submit">Update</button>
-            <button type="delete" onClick={handleDeleteUser} className="delete-btn">Delete</button>
+            <button type="submit">Updaten</button>
+            <button type="delete" onClick={handleDeleteUser} className="delete-btn">Löschen</button>
           </div>
         </form>
         <button type="close" onClick={onClose} className="close">x</button>
